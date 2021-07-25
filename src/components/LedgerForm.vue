@@ -1,26 +1,38 @@
 <template>
     <div>
-        <label for="date">Date</label>
-        <input type="date" v-model="form.date">
+        <div>Balance: {{ balance }}</div>
+        <div>
+            <label for="date">Date</label>
+            <input type="date" v-model="form.date">
+        </div>
+        
+        <div>
+            <label for="type">Received or Spent</label>
+            <select v-model="form.type">
+                <option disabled value="">Please select one</option>
+                <option value="Received">Received</option>
+                <option value="Spent">Spent</option>
+            </select>
+        </div>
 
-        <label for="type">Received or Spent</label>
-        <select v-model="form.type">
-            <option disabled value="">Please select one</option>
-            <option value="Received">Received</option>
-            <option value="Spent">Spent</option>
-        </select>
+        <div>
+            <label for="amount">Amount</label>
+            <input type="text" v-model="form.amount">
 
-        <label for="amount">Amount</label>
-        <input type="text" v-model="form.amount">
+        </div>
 
-        <label for="description">Description</label>
-        <input type="text" v-model="form.description">
+        <div>
+            <label for="description">Description</label>
+            <input type="text" v-model="form.description">
 
+        </div>
+        
         <button @click="addList">Add</button>
     </div>
 </template>
 
 <script>
+import LedgerStore from '@/store/ledgerStore'
 export default {
     data() {
         return {
@@ -29,7 +41,8 @@ export default {
                 type: '',
                 amount: '',
                 description: '',
-            }
+            },
+            balance: 0,
         }
     },
     methods: {
@@ -49,9 +62,21 @@ export default {
                 description: this.form.description,
             }
 
-            // PokemonStore.dispatch('addPokemon', payload)
+            LedgerStore.dispatch('addList', payload)
             console.log(payload)
+            this.calculate()
             this.clearForm()
+        },
+        calculate() {
+            if ( this.form.type === "Received" ){
+                this.balance += parseInt(this.form.amount)
+                console.log("Yeah")
+            }
+            else if ( this.form.type === "Spent" ) {
+                this.balance -= parseInt(this.form.amount)
+                console.log("Nahhh")
+            }
+           
         }
     }
 }
