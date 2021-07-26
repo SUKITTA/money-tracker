@@ -2,32 +2,35 @@
     <div>
         <div>Balance: {{ balance }}</div>
         <div>
-            <label for="date">Date</label>
-            <input type="date" v-model="form.date">
-        </div>
-        
-        <div>
-            <label for="type">Received or Spent</label>
-            <select v-model="form.type">
-                <option disabled value="">Please select one</option>
-                <option value="Received">Received</option>
-                <option value="Spent">Spent</option>
-            </select>
-        </div>
+            <div>
+                <label for="date">Date</label>
+                <input type="date" v-model="form.date">
+            </div>
+            
+            <div>
+                <label for="type">Received or Spent</label>
+                <select v-model="form.type">
+                    <option disabled value="">Please select one</option>
+                    <option value="Received">Received</option>
+                    <option value="Spent">Spent</option>
+                </select>
+            </div>
 
-        <div>
-            <label for="amount">Amount</label>
-            <input type="text" v-model="form.amount">
+            <div>
+                <label for="amount">Amount</label>
+                <input type="text" v-model="form.amount">
+            </div>
 
-        </div>
+            <div>
+                <label for="description">Description</label>
+                <!-- <input type="text" v-model="form.description"> -->
+                <textarea name="description" id="description" cols="30" rows="5" v-model="form.description"></textarea>
 
-        <div>
-            <label for="description">Description</label>
-            <input type="text" v-model="form.description">
-
-        </div>
-        
+            </div>
+        </div>    
+            
         <button @click="addList">Add</button>
+        
     </div>
 </template>
 
@@ -38,9 +41,15 @@ export default {
         return {
             form: {
                 date: '',
-                type: '',
-                amount: '',
-                description: '',
+                detail: {
+                    type: '',
+                    amount: '',
+                    description: '',
+                }
+                // date: '',
+                // type: '',
+                // amount: '',
+                // description: '',
             },
             balance: 0,
         }

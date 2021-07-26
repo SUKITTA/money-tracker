@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+// import Axios from 'axios'
+
+import json_file from "../../data.json"
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -21,19 +25,7 @@ export default new Vuex.Store({
   actions: {
     fetchList({ commit }) {
         let res = {
-            data: [
-                // {
-                //     date: "12/08/2021",
-                //     amount: "2000",
-                //     descriptions: "พ่อให้"
-                // },
-                // {
-                //     date: "13/08/2021",
-                //     amount: "7000",
-                //     descriptions: "่้่้้asdfgfasdfsd"
-                // },
-                
-            ]
+            data: json_file,
         }
         commit("fetch", { res })
     },

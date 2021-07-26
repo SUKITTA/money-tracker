@@ -1,10 +1,10 @@
 <template>
     <div>
-        <h1>Money Tracker</h1>
-        <div>for Graph</div>
+        <h1 class="header">Money Tracker</h1>
+        <div class="graph">for Graph</div>
         <div class="body">
-            <ledger-form class="ledger-form"></ledger-form>
             <ledger-table class="ledger-table"></ledger-table>
+            <ledger-form class="ledger-form"></ledger-form>
         </div>
         
     </div>
@@ -22,6 +22,17 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/assets/theme";
+.header {
+    margin: 0;
+    padding: 0.8em 0;
+    color: $soft-cream;
+    background-color: $dark-green;
+}
+
+.graph {
+    margin: 0.8em;
+}
 
 .body {
     padding-top: 8px;
@@ -32,5 +43,6 @@ export default {
         margin-top: 24px;
     }
 }
+
 
 </style>
