@@ -10,34 +10,25 @@
                 </tr>
             </thead>
 
-            <!-- <tbody>
-                <tr>
-                    <td>12/08/2021</td>
-                    <td>2000</td>
-                    <td>500</td>
-                    <td>ซื้อ Pizza</td>
-                </tr>
-            </tbody> -->
-
             <tbody>
                 <tr v-for="(list, index) in ledger" :key="index">
-                    <td>{{ list.date }}</td>
+                    <td class="date" >{{ list.date }}</td>
 
-                    <td v-if="list.type === 'Received'">
+                    <td class="received" v-if="list.type === 'Received'">
                         {{ list.amount}}
                     </td>
                     <td v-if="list.type !== 'Spent'"></td>
 
                     <td v-if="list.type !== 'Received'"></td>
-                    <td v-if="list.type === 'Spent'">
+                    <td class="spent" v-if="list.type === 'Spent'">
                         {{ list.amount }}
                     </td>
                 
-                    <td>{{ list.description }}</td>
+                    <td class="description" >{{ list.description }}</td>
 
-                    <td>
+                    <!-- <td>
                         <button @click="deleteList">x</button>
-                    </td>
+                    </td> -->
                 </tr>
             </tbody>
 
@@ -61,9 +52,9 @@ export default {
             LedgerStore.dispatch('fetchList')
             this.ledger = LedgerStore.getters.ledger
         },
-        deleteList() {
-            // this.ledger = 
-        },
+        // deleteList() {
+        //     this.ledger = 
+        // },
         
     }
 }
@@ -74,6 +65,33 @@ export default {
 
 table {
     width: 100%;
+    padding: 0 32px;
+    th {
+        background-color: $light-green;
+        color: $dark-green;
+        height: 2.5em;
+        font-size: 18px;
+    }
+    tr {
+        background-color: cornsilk;
+        td {
+            padding: 4px;
+        }
+        .date {
+            width: 20%;
+        }
+        .received {
+            width: 15%;
+        }
+        .spent {
+            width: 15%;
+        }
+        .description {
+            width: 50%;
+            word-break: break-word;
+        }
+    }
+    /* tr:nth-child(even) {background-color: ;} */
 }
 
 </style>
